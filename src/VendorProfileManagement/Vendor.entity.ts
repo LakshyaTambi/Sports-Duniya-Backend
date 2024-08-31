@@ -4,8 +4,8 @@ import { PurchaseOrder } from 'src/PurchaseOrderTracking/Purchase.entity';
 
 @Entity()
 export class Vendor {
-  @PrimaryColumn() // Use PrimaryColumn instead of PrimaryGeneratedColumn for vendorCode
-  vendorCode: string; // Unique identifier for the vendor
+  @PrimaryColumn() 
+  vendorCode: string; 
 
   @Column()
   name: string;

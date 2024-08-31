@@ -1,29 +1,33 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Put, Body } from '@nestjs/common';
 import { PurchaseService } from './purchase.service';
+import { CreatePurchaseOrderDto } from './create-purchase-order.dto';
 
-
-@Controller('purchase-order')
-export class PurchaseController {
-  constructor(private readonly appService: PurchaseService) {}
+@Controller('purchase-orders') // Corrected to plural form for consistency
+export class PurchaseOrderController {
+  constructor(private readonly purchaseOrderService: PurchaseService) {}
 
   @Post()
-   purchaseOrder():string{
-     return this.appService.placeOrder();
-   }
+  async createPurchaseOrder(@Body() createPurchaseOrderDto: CreatePurchaseOrderDto) {
+    return this.purchaseOrderService.createPurchaseOrder(createPurchaseOrderDto);
+  }
 
-  @Get(':poId')
-  listpurchaseOrder(@Param("poId")poId:Number): string {
-    return this.appService.listPurchaseOrder(poId);
+  @Get()
+  async listPurchaseOrders() {
+    return this.purchaseOrderService.listPurchaseOrders();
   }
   
-  @Put(':poId')
-  purchaseDetails(@Param("poId")poId:Number): string {
-    return this.appService.updatePurchaseOrder(poId);
+  @Get(':id')
+  async getPurchaseOrderById(@Param('id') id: string) {
+    return this.purchaseOrderService.getPurchaseOrderByPoNumber(id);
   }
- 
-  @Delete(':poId')
-  deletePurchaseOrder(@Param("poId")poId:Number): string {
-    return this.appService.deletePurchaseOrder(poId);
+  
+  @Put(':id')
+  async updatePurchaseOrder(@Param('id') id: string, @Body() updatePurchaseOrderDto: CreatePurchaseOrderDto) {
+    return this.purchaseOrderService.updatePurchaseOrder(id, updatePurchaseOrderDto);
   }
 
+  @Delete(':id')
+  async deletePurchaseOrder(@Param('id') id: string) {
+    return this.purchaseOrderService.deletePurchaseOrder(id);
+  }
 }
