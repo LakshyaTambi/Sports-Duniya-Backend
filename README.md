@@ -23,7 +23,7 @@ The **Sports Duniya Backend** is a NestJS-based application designed to manage v
 ### Prerequisites
 
 Ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v14 or higher)
+- [Node.js](https://nodejs.org/) (v18 or higher)
 - [npm](https://www.npmjs.com/) or [Yarn](https://classic.yarnpkg.com/) (package managers)
 
 ### Setup
